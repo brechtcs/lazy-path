@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^10.0.3",
+    "tape": "^4.8.0"
+  }
+}
