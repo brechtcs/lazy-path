@@ -1,4 +1,14 @@
 {
+  "name": "path-jit",
+  "version": "1.0.0",
+  "description": "Wrapper around Node's path module with JIT parsing and cache",
+  "keywords": [
+    "path",
+    "parse",
+    "jit",
+    "class"
+  ],
+  "main": "index.js",
   "scripts": {
     "test": "standard && tape test.js"
   },
@@ -6,5 +16,14 @@
   "devDependencies": {
     "standard": "^10.0.3",
     "tape": "^4.8.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brechtpm/path-jit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brechtpm/path-jit/issues"
+  },
+  "author": "Brecht Savelkoul <brecht.savelkoul@gmail.com>",
+  "license": "Apache-2.0"
 }
