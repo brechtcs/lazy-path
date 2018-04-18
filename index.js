@@ -1,5 +1,13 @@
 var path = require('path')
 
+function cannotSet (prop, alt) {
+  var msg = `Cannot set Path property '${prop}'`
+  if (alt) {
+    msg += `, maybe you want to set '${alt}' instead?`
+  }
+  return msg
+}
+
 class Path {
   constructor (...args) {
     var parts = args.map(part => {
@@ -19,8 +27,16 @@ class Path {
     return path.delimiter
   }
 
+  static set delimiter () {
+    throw new Error(cannotSet('delimiter'))
+  }
+
   static get sep () {
     return path.sep
+  }
+
+  static set sep () {
+    return new Error(cannotSet('sep'))
   }
 
   to (dest) {
@@ -38,6 +54,10 @@ class Path {
     return path.isAbsolute(this.str)
   }
 
+  set abs () {
+    throw new Error(cannotSet('abs'))
+  }
+
   get base () {
     return this.parsed.base
   }
@@ -53,6 +73,10 @@ class Path {
     }
   }
 
+  set cache () {
+    throw new Error(cannotSet('cache'))
+  }
+
   get crumbs () {
     if (this.cache && this.cache.crumbs) {
       return this.cache.crumbs
@@ -60,6 +84,10 @@ class Path {
     var crumbs = this.dir.split(path.sep)
     this.cache.crumbs = crumbs
     return crumbs
+  }
+
+  set crumbs () {
+    throw new Error(cannotSet('crumbs', 'dir'))
   }
 
   get dir () {
@@ -121,12 +149,28 @@ class Path {
     return this.cache
   }
 
+  set parsed () {
+    throw new Error(cannotSet('parsed'))
+  }
+
   get res () {
     return path.resolve(this.str)
   }
 
+  set res () {
+    throw new Error(cannotSet('res'))
+  }
+
   get root () {
     return this.parsed.root
+  }
+
+  set root () {
+    throw new Error(cannotSet('root', 'dir'))
+  }
+
+  set str () {
+    throw new Error(cannotSet('str', 'full'))
   }
 }
 
