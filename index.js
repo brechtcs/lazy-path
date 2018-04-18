@@ -1,3 +1,4 @@
+var assert = require('assert')
 var path = require('path')
 
 function cannotSet (prop, alt) {
@@ -63,6 +64,7 @@ class Path {
   }
 
   set base (base) {
+    assert.equal(typeof base, 'string', 'Path.base must be a string')
     if (this.cache) {
       this.cache.base = base
       this.cache.ext = path.extname(base)
@@ -95,6 +97,7 @@ class Path {
   }
 
   set dir (dir) {
+    assert.equal(typeof dir, 'string', 'Path.dir must be a string')
     if (this.cache) {
       delete this.cache.crumbs
       this.cache.dir = dir
@@ -109,6 +112,7 @@ class Path {
   }
 
   set ext (ext) {
+    assert.equal(typeof ext, 'string', 'Path.ext must be a string')
     if (this.cache) {
       this.cache.base = this.parsed.name + ext
       this.cache.ext = ext
@@ -124,6 +128,7 @@ class Path {
   }
 
   set full (full) {
+    assert.equal(typeof full, 'string', 'Path.full must be a string')
     delete this.cache
     this.str = path.normalize(full)
   }
@@ -133,6 +138,7 @@ class Path {
   }
 
   set name (name) {
+    assert.equal(typeof.name, 'string', 'Path.name must be a string')
     if (this.cache) {
       this.cache.base = name + this.parsed.ext
       this.cache.name = name
