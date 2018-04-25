@@ -28,7 +28,7 @@ class Path {
     return path.delimiter
   }
 
-  static set delimiter () {
+  static set delimiter (_) {
     throw new Error(cannotSet('delimiter'))
   }
 
@@ -36,7 +36,7 @@ class Path {
     return path.sep
   }
 
-  static set sep () {
+  static set sep (_) {
     return new Error(cannotSet('sep'))
   }
 
@@ -55,7 +55,7 @@ class Path {
     return path.isAbsolute(this.str)
   }
 
-  set abs () {
+  set abs (_) {
     throw new Error(cannotSet('abs'))
   }
 
@@ -75,10 +75,6 @@ class Path {
     }
   }
 
-  set cache () {
-    throw new Error(cannotSet('cache'))
-  }
-
   get crumbs () {
     if (this.cache && this.cache.crumbs) {
       return this.cache.crumbs
@@ -88,7 +84,7 @@ class Path {
     return crumbs
   }
 
-  set crumbs () {
+  set crumbs (_) {
     throw new Error(cannotSet('crumbs', 'dir'))
   }
 
@@ -138,7 +134,7 @@ class Path {
   }
 
   set name (name) {
-    assert.equal(typeof.name, 'string', 'Path.name must be a string')
+    assert.equal(typeof name, 'string', 'Path.name must be a string')
     if (this.cache) {
       this.cache.base = name + this.parsed.ext
       this.cache.name = name
@@ -155,7 +151,7 @@ class Path {
     return this.cache
   }
 
-  set parsed () {
+  set parsed (_) {
     throw new Error(cannotSet('parsed'))
   }
 
@@ -163,7 +159,7 @@ class Path {
     return path.resolve(this.str)
   }
 
-  set res () {
+  set res (_) {
     throw new Error(cannotSet('res'))
   }
 
@@ -171,12 +167,8 @@ class Path {
     return this.parsed.root
   }
 
-  set root () {
+  set root (_) {
     throw new Error(cannotSet('root', 'dir'))
-  }
-
-  set str () {
-    throw new Error(cannotSet('str', 'full'))
   }
 }
 
