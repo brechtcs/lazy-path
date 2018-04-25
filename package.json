@@ -1,7 +1,7 @@
 {
-  "name": "path-jit",
+  "name": "lazy-path",
   "version": "1.0.0",
-  "description": "Wrapper around Node's path module with JIT parsing and cache",
+  "description": "Lazy wrapper around the NodeJS path module",
   "keywords": [
     "path",
     "parse",
@@ -19,10 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brechtpm/path-jit.git"
+    "url": "git+https://github.com/brechtcs/lazy-path.git"
   },
   "bugs": {
-    "url": "https://github.com/brechtpm/path-jit/issues"
+    "url": "https://github.com/brechtcs/lazy-path/issues"
   },
   "author": "Brecht Savelkoul <brecht.savelkoul@gmail.com>",
   "license": "Apache-2.0"
