@@ -37,8 +37,8 @@ Path.from('one/file.txt').to(another) // '../another'
 
 ## Todo
 
-- [ ] Make it even more lazy ([Issue #1](https://github.com/brechtcs/lazy-path/issues/1)
-- [ ] Cache the `res` property ([Issue #2](https://github.com/brechtcs/lazy-path/issues/1)
+- [ ] Make it even more lazy ([Issue #1](https://github.com/brechtcs/lazy-path/issues/1))
+- [ ] Cache the `res` property ([Issue #2](https://github.com/brechtcs/lazy-path/issues/2))
 
 ## License
 
