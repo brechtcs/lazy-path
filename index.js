@@ -4,7 +4,7 @@ function cannotSet (prop) {
   return `Cannot set Path property '${prop}'`
 }
 
-class Path {
+class Path extends String {
   constructor (...args) {
     var parts = args.map(part => {
       if (part instanceof Path) {
@@ -12,7 +12,8 @@ class Path {
       }
       return path.normalize(part)
     })
-    this.str = path.join(...parts)
+
+    super(path.join(...parts))
   }
 
   static from (...args) {
@@ -37,17 +38,13 @@ class Path {
 
   to (dest) {
     if (dest instanceof Path) {
-      dest = dest.toString()
+      dest = dest.valueOf()
     }
-    return path.relative(this.str, dest)
-  }
-
-  toString () {
-    return this.str
+    return path.relative(this.valueOf(), dest)
   }
 
   get abs () {
-    return path.isAbsolute(this.str)
+    return path.isAbsolute(this.valueOf())
   }
 
   set abs (_) {
@@ -101,7 +98,7 @@ class Path {
 
   get parsed () {
     if (!this.cache) {
-      this.cache = path.parse(this.str)
+      this.cache = path.parse(this.valueOf())
     }
     return this.cache
   }
@@ -111,7 +108,7 @@ class Path {
   }
 
   get res () {
-    return path.resolve(this.str)
+    return path.resolve(this.valueOf())
   }
 
   set res (_) {

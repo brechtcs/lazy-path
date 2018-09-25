@@ -30,3 +30,11 @@ test('breadcrumbs', function (t) {
   t.equal(path.crumbs.length, 3, 'directory tree count')
   t.end()
 })
+
+test('string methods', function (t) {
+  var path = Path.from('some', 'folder')
+  t.ok(path instanceof String, 'is String object')
+  t.ok(path.length, 'has length')
+  t.ok(path.indexOf('folder') > -1, 'use method')
+  t.end()
+})
