@@ -13,11 +13,6 @@ console.log(path.base) // 'file.txt'
 console.log(path.name) // 'file'
 console.log(path.ext) // '.txt'
 
-// You can also set new values for these properties
-path.base = 'other.jpg'
-console.log(path.name) // 'other'
-console.log(path.ext) // '.jpg'
-
 // The `crumbs` property gives an array of the directies in the path
 console.log(path.crumbs) // ['path', 'to']
 
