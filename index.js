@@ -1,12 +1,7 @@
-var assert = require('assert')
 var path = require('path')
 
-function cannotSet (prop, alt) {
-  var msg = `Cannot set Path property '${prop}'`
-  if (alt) {
-    msg += `, maybe you want to set '${alt}' instead?`
-  }
-  return msg
+function cannotSet (prop) {
+  return `Cannot set Path property '${prop}'`
 }
 
 class Path {
@@ -64,15 +59,7 @@ class Path {
   }
 
   set base (base) {
-    assert.equal(typeof base, 'string', 'Path.base must be a string')
-    if (this.cache) {
-      this.cache.base = base
-      this.cache.ext = path.extname(base)
-      this.cache.name = path.basename(base, this.parsed.ext)
-      this.str = path.join(this.parsed.dir, base)
-    } else {
-      this.str = path.join(path.dirname(this.str), base)
-    }
+    throw new Error(cannotSet('base'))
   }
 
   get crumbs () {
@@ -93,14 +80,7 @@ class Path {
   }
 
   set dir (dir) {
-    assert.equal(typeof dir, 'string', 'Path.dir must be a string')
-    if (this.cache) {
-      delete this.cache.crumbs
-      this.cache.dir = dir
-      this.str = path.join(dir, this.parsed.base)
-    } else {
-      this.str = path.join(dir, path.basename(this.str))
-    }
+    throw new Error(cannotSet('dir'))
   }
 
   get ext () {
@@ -108,25 +88,7 @@ class Path {
   }
 
   set ext (ext) {
-    assert.equal(typeof ext, 'string', 'Path.ext must be a string')
-    if (this.cache) {
-      this.cache.base = this.parsed.name + ext
-      this.cache.ext = ext
-      this.str = path.join(this.parsed.dir, this.parsed.base)
-    } else {
-      var oldExt = this.cache ? this.parsed.ext : path.extname(this.str)
-      this.str = path.join(path.dirname(this.str), path.basename(this.str, oldExt) + ext)
-    }
-  }
-
-  get full () {
-    return this.str
-  }
-
-  set full (full) {
-    assert.equal(typeof full, 'string', 'Path.full must be a string')
-    delete this.cache
-    this.str = path.normalize(full)
+    throw new Error(cannotSet('ext'))
   }
 
   get name () {
@@ -134,14 +96,7 @@ class Path {
   }
 
   set name (name) {
-    assert.equal(typeof name, 'string', 'Path.name must be a string')
-    if (this.cache) {
-      this.cache.base = name + this.parsed.ext
-      this.cache.name = name
-      this.str = path.join(this.parsed.dir, this.parsed.base)
-    } else {
-      this.str = path.join(path.dirname(this.str), name + path.extname(this.str))
-    }
+    throw new Error(cannotSet('name'))
   }
 
   get parsed () {
@@ -168,7 +123,7 @@ class Path {
   }
 
   set root (_) {
-    throw new Error(cannotSet('root', 'dir'))
+    throw new Error(cannotSet('root'))
   }
 }
 
