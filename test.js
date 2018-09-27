@@ -35,6 +35,7 @@ test('string methods', function (t) {
   var path = Path.from('some', 'folder')
   t.ok(path instanceof String, 'is String object')
   t.ok(path.length, 'has length')
-  t.ok(path.indexOf('folder') > -1, 'use method')
+  t.ok(path.indexOf('folder') > -1, 'indexOf method')
+  t.equal(path.substring(0, 5), 'some/', 'substring method')
   t.end()
 })
